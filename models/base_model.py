@@ -9,6 +9,7 @@ class BaseModel:
     """ BaseModel class
     defines all common attributes/methods for other classes """
     def __init__(self, *args, **kwargs):
+        """ initializes the BaseModel class """
         if kwargs:
             kwargs.pop("__class__", None)
             kwargs["created_at"] = datetime.strptime(
