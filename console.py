@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """ This module contains the entry point of the command interpreter """
 import cmd
+from models.base_model import BaseModel
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -23,9 +25,11 @@ class HBNBCommand(cmd.Cmd):
         saves it (to the JSON file) and prints the id. Ex: $ create BaseModel
         If the class name is missing, print ** class name missing ** (ex: $ create)
         If the class name doesn’t exist, print ** class doesn't exist ** (ex: $ create MyModel)"""
-        pass
+        model = BaseModel()
+        model.save()
+        print(model.id)
 
-    def do_show(self, arg):
+    def do_show(self, line):
         """ Prints the string representation of an instance based on the class name and id.
         Ex: $ show BaseModel 1234-1234-1234
         If the class name is missing, print ** class name missing **
@@ -36,7 +40,20 @@ class HBNBCommand(cmd.Cmd):
         (ex: $ show BaseModel)
         If the instance of the class name doesn’t exist for the id, print ** no instance found **
         (ex: $ show BaseModel 121212) """
-        pass
+        len_line = len(line.split())
+        if len_line == 0:
+            print("** class name missing **")
+        elif len_line == 1:
+            print("** instance id missing **")
+        else:
+            class_name = line.split()[0]
+            class_id = line.split()[1]
+            key = "{}.{}".format(class_name, class_id)
+            if key in storage.all():
+                print(storage.all()[key])
+            else:
+                pass
+        
 
     def do_destroy(self, arg):
         """ Deletes an instance based on the class name and id
