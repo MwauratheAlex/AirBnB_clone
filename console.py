@@ -49,10 +49,11 @@ class HBNBCommand(cmd.Cmd):
             class_name = line.split()[0]
             class_id = line.split()[1]
             key = "{}.{}".format(class_name, class_id)
+            storage.reload()
             if key in storage.all():
                 print(storage.all()[key])
             else:
-                pass
+                print("** no instance found ** ")
         
 
     def do_destroy(self, arg):
