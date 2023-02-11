@@ -9,10 +9,29 @@ class HBNBCommand(cmd.Cmd):
     """ Class for the AirHBNB console """
     prompt = "(hbnb) "
     def check_exists(self, name):
+        """ Checks if a class or id exists in storage """
         for obj in storage.all().values():
             if name in obj.values():
                 return True
         return False
+
+    def validate_args(self, arg):
+        """ Validates user input """
+        arg_len = len(arg.split())
+        if arg_len == 0:
+            print("** class name missing **")
+            return False
+        elif arg_len >= 1 and not self.check_exists(str(arg.split()[0])):
+            print("** class doesn't exist **")
+            return False
+        elif arg_len == 1:
+            print("** instance id missing **")
+            return False
+        elif not self.check_exists(str(arg.split()[1])):
+            print("** no instance found **")
+            return False
+        return True
+
 
     def do_EOF(self, line):
         """ Type Ctrl-D to quit """
@@ -51,31 +70,18 @@ class HBNBCommand(cmd.Cmd):
         (ex: $ show BaseModel)
         If the instance of the class name doesn’t exist for the id, print ** no instance found **
         (ex: $ show BaseModel 121212) """
-        len_line = len(line.split())
-        if len_line == 0:
-            print("** class name missing **")
-        elif len_line >= 1 and not self.check_exists(str(line.split()[0])):
-            print("** class doesn't exist **")
-        elif len_line == 1:
-            print("** instance id missing **")
-        else:
-            class_name = line.split()[0]
-            class_id = line.split()[1]
-            if not self.check_exists(str(class_id)):
-                print("** no instance found **")
-            else:
-                key = "{}.{}".format(class_name, class_id)
-                if key in storage.all():
-                    print(storage.all()[key])
-                else:
-                    print("** no instance found ** ")
-        
-
-    def do_destroy(self, arg):
+        if self.validate_args(line):
+            key = "{}.{}".format(line.split()[0], line.split()[1])
+            print(storage.all()[key])
+            
+    def do_destroy(self, line):
         """ Deletes an instance based on the class name and id
         (save the change into the JSON file).
         Ex: $ destroy BaseModel 1234-1234-1234. """
-        pass
+        if self.validate_args(line):
+            key = "{}.{}".format(line.split()[0], line.split()[1])
+            del storage.all()[key]
+            storage.save()
 
     def do_all(self, arg):
         """ Prints all string representation of all instances based or not on the class name.
@@ -89,12 +95,5 @@ class HBNBCommand(cmd.Cmd):
         Usage: update <class name> <id> <attribute name> "<attribute value>" """
         pass
 
-    
-
-
-
-
-
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
-
