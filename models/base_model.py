@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 """ This module contains the BaseModel class """
-
 from uuid import uuid4
 from datetime import datetime
-from models.__init__ import storage
+from models import storage
 
 
 class BaseModel:
@@ -23,7 +22,6 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             storage.new(self.to_dict())
-
 
     def __str__(self):
         """ print: [<class name>] (<self.id>) <self.__dict__> """

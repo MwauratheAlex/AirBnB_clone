@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """ This module contains the class Place """
 
+from models.base_model import BaseModel
+
 
 class Place(BaseModel):
     """ represents a place """

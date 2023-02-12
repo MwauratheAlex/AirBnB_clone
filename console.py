@@ -29,7 +29,6 @@ class HBNBCommand(cmd.Cmd):
                 key = ""
         return key
 
-
     def do_EOF(self, line):
         """ Type Ctrl-D to quit """
         return True
@@ -43,7 +42,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """ Creates a new instance of BaseModel,
-        saves it (to the JSON file) and prints the id. Ex: $ create BaseModel """
+        saves it (to the JSON file) and prints the id.
+        Ex: $ create BaseModel """
         if not arg:
             print("** class name missing **")
         elif str(arg) not in self.__classes:
@@ -55,12 +55,13 @@ class HBNBCommand(cmd.Cmd):
             storage.reload()
 
     def do_show(self, line):
-        """ Prints the string representation of an instance based on the class name and id.
+        """ Prints the string representation of an instance
+        based on the class name and id.
         Ex: $ show BaseModel 1234-1234-1234 """
         key = self.validate_args(line)
         if key:
             print(storage.all()[key])
-            
+
     def do_destroy(self, line):
         """ Deletes an instance based on the class name and id
         (save the change into the JSON file).
@@ -71,7 +72,8 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_all(self, arg):
-        """ Prints all string representation of all instances based or not on the class name.
+        """ Prints all string representation of all instances
+        based or not on the class name.
         Ex: $ all BaseModel or $ all. """
         if not arg:
             print(storage.all())
@@ -85,7 +87,8 @@ class HBNBCommand(cmd.Cmd):
         """ Updates an instance based on the class name and id
         by adding or updating attribute (save the change into the JSON file).
         Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com".
-        Usage: update <class name> <id> <attribute name> "<attribute value>" """
+        Usage:
+            update <class name> <id> <attribute name> "<attribute value>" """
         key = self.validate_args(line)
         if key:
             line_len = len(line.split())
@@ -99,6 +102,7 @@ class HBNBCommand(cmd.Cmd):
                 value = line.split()[3]
                 obj[attribute] = value
                 storage.save()
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

@@ -7,8 +7,8 @@ from os import path
 
 
 class FileStorage:
-    """ FileStorage class:
-    serializes instances to a JSON file and deserializes JSON file to instances."""
+    """ FileStorage class: serializes instances to a JSON file
+    and deserializes JSON file to instances."""
 
     __file_path = "file.json"
     __objects = {}
@@ -35,4 +35,3 @@ class FileStorage:
         if path.exists(self.__file_path):
             with open(self.__file_path, 'r', encoding='utf-8') as f:
                 self.__objects = json.loads(f.read())
-
