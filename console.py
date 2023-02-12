@@ -9,31 +9,24 @@ class HBNBCommand(cmd.Cmd):
     """ Class for the AirHBNB console """
     __classes = {"BaseModel"}
     prompt = "(hbnb) "
-    def check_exists(self, name):
-        """ Checks if a class or id exists in storage """
-        for obj in storage.all().values():
-            if name in obj.values():
-                return True
-        return False
 
     def validate_args(self, arg):
-        """ Validates user input """
+        """ Validates user input,
+        returns the key if found,
+        else returns empty string """
         key = ""
         arg_len = len(arg.split())
         if arg_len == 0:
             print("** class name missing **")
-            return False
         elif arg_len >= 1 and str(arg.split()[0]) not in self.__classes:
             print("** class doesn't exist **")
-            return False
         elif arg_len == 1:
             print("** instance id missing **")
-            return False
         else:
             key = "{}.{}".format(arg.split()[0], arg.split()[1])
             if key not in storage.all():
                 print("** no instance found **")
-                return False
+                key = ""
         return key
 
 
@@ -75,7 +68,7 @@ class HBNBCommand(cmd.Cmd):
         If the instance of the class name doesn’t exist for the id, print ** no instance found **
         (ex: $ show BaseModel 121212) """
         key = self.validate_args(line)
-        if key != False:
+        if key:
             print(storage.all()[key])
             
     def do_destroy(self, line):
@@ -83,7 +76,7 @@ class HBNBCommand(cmd.Cmd):
         (save the change into the JSON file).
         Ex: $ destroy BaseModel 1234-1234-1234. """
         key = self.validate_args(line)
-        if key != False:
+        if key:
             del storage.all()[key]
             storage.save()
 
