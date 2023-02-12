@@ -43,9 +43,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """ Creates a new instance of BaseModel,
-        saves it (to the JSON file) and prints the id. Ex: $ create BaseModel
-        If the class name is missing, print ** class name missing ** (ex: $ create)
-        If the class name doesn’t exist, print ** class doesn't exist ** (ex: $ create MyModel)"""
+        saves it (to the JSON file) and prints the id. Ex: $ create BaseModel """
         if not arg:
             print("** class name missing **")
         elif str(arg) not in self.__classes:
@@ -58,15 +56,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """ Prints the string representation of an instance based on the class name and id.
-        Ex: $ show BaseModel 1234-1234-1234
-        If the class name is missing, print ** class name missing **
-        (ex: $ show)
-        If the class name doesn’t exist, print ** class doesn't exist **
-        (ex: $ show MyModel)
-        If the id is missing, print ** instance id missing ** 
-        (ex: $ show BaseModel)
-        If the instance of the class name doesn’t exist for the id, print ** no instance found **
-        (ex: $ show BaseModel 121212) """
+        Ex: $ show BaseModel 1234-1234-1234 """
         key = self.validate_args(line)
         if key:
             print(storage.all()[key])
