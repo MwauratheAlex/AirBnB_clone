@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ This module contains the class User """
 
-import BaseModel
+from base_model import BaseModel
 
 
 class User(BaseModel):
