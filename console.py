@@ -114,6 +114,7 @@ class HBNBCommand(cmd.Cmd):
                 obj = storage.all()[key]
                 attribute = line.split()[2]
                 value = line.split()[3]
+                # TODO: Replace setattr. Securicy concerns
                 setattr(obj, attribute, value)
                 storage.save()
 
