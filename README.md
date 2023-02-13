@@ -24,5 +24,10 @@ This abstraction will also allow you to change the type of storage easily withou
 The console will be a tool to validate this storage engine</br>
 
 ### How to start it
+1. clone the repository
+2. go to the AirBnB_clone directory
+3. Open terminal in the directory
+4. Use the command `$ .console.py `
+5. Type `help` to get started
 ### How to use it
 ### examples
