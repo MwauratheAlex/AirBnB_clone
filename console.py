@@ -100,7 +100,7 @@ class HBNBCommand(cmd.Cmd):
                 obj = storage.all()[key]
                 attribute = line.split()[2]
                 value = line.split()[3]
-                obj[attribute] = value
+                setattr(obj, attribute, value)
                 storage.save()
 
 
