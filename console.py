@@ -3,12 +3,14 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
     """ Class for the AirHBNB console """
-    __classes = {"BaseModel"}
+    __classes = {"BaseModel" : BaseModel, "User" : User}
     prompt = "(hbnb) "
+
 
     def validate_args(self, arg):
         """ Validates user input,
@@ -49,9 +51,9 @@ class HBNBCommand(cmd.Cmd):
         elif str(arg) not in self.__classes:
             print("** class doesn't exist **")
         else:
-            model = BaseModel()
-            model.save()
-            print(model.id)
+            instance = self.__classes[str(arg)]()
+            instance.save()
+            print(instance.id)
             storage.reload()
 
     def do_show(self, line):
