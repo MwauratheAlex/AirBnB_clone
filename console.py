@@ -14,16 +14,15 @@ from models.review import Review
 class HBNBCommand(cmd.Cmd):
     """ Class for the AirHBNB console """
     __classes = {
-            "BaseModel" : BaseModel,
-            "User" : User,
-            "State" : State,
-            "City" : City,
-            "Amenity" : Amenity,
-            "Place" : Place,
-            "Review" : Review
+            "BaseModel": BaseModel,
+            "User": User,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Place": Place,
+            "Review": Review
             }
     prompt = "(hbnb) "
-
 
     def validate_args(self, arg):
         """ Validates user input,
