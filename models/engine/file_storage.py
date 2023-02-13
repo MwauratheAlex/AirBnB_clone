@@ -36,7 +36,7 @@ class FileStorage:
         otherwise, do nothing.
         If the file doesn’t exist, no exception should be raised)"""
         from models.base_model import BaseModel
-        classes = {"BaseModel" : BaseModel}
+        classes = {"BaseModel" : BaseModel, "User" : User}
         temp = {}
         if path.exists(self.__file_path):
             with open(self.__file_path, 'r', encoding='utf-8') as f:
