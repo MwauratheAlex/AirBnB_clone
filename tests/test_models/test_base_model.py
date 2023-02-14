@@ -42,10 +42,27 @@ class TestBaseModel(unittest.TestCase):
         b = BaseModel()
         self.assertNotEqual(a.id, b.id)
 
-    def test_print(self):
+    def test_str(self):
+        """ Test str """
         a = BaseModel()
         self.assertEqual(str(a),
                          "[BaseModel] ({}) {}".format(a.id, a.__dict__))
+
+    def test_to_dict(self):
+        """ Test to dict """
+        b = BaseModel()
+        class_dict = vars(b).copy()
+        class_dict["__class__"] = "BaseModel"
+        class_dict["created_at"] = class_dict["created_at"].isoformat()
+        class_dict["updated_at"] = class_dict["updated_at"].isoformat()
+        self.assertEqual(b.to_dict(), class_dict)
+
+    def test_save(self):
+        b = BaseModel()
+        updated_at_f = b.updated_at
+        b.save()
+        updated_at_l = b.updated_at
+        self.assertNotEqual(updated_at_f, updated_at_l)
 
 
 if __name__ == "__main__":
