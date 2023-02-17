@@ -48,4 +48,7 @@ class TestFileStorage(unittest.TestCase):
     def test_reload(self):
         """ Tests the function reload """
         fs = FileStorage()
-        self.assertIsNone(fs.reload())
+        bm = BaseModel()
+        models.storage.save()
+        fs.reload()
+        self.assertIn("BaseModel." + bm.id, fs.all())
