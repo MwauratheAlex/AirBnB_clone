@@ -15,10 +15,19 @@ class TestUser(unittest.TestCase):
         self.assertTrue(hasattr(u, "first_name"))
         self.assertTrue(hasattr(u, "last_name"))
 
-    def test_attr_types(self):
+    def test_email(self):
         """Test if attributes are of correct type"""
         u = User()
         self.assertTrue(type(u.email), str)
+
+    def test_password(self):
+        u = User()
         self.assertTrue(type(u.password), str)
+
+    def test_first_name(self):
+        u = User()
         self.assertTrue(type(u.first_name), str)
+
+    def test_last_name(self):
+        u = User()
         self.assertTrue(type(u.last_name), str)
