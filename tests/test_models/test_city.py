@@ -13,12 +13,12 @@ class TestCity(TestBaseModel):
 
     def test_has_attributes(self):
         """Test if all attributes are present"""
-        c = City()
+        c = self.value()
         self.assertTrue(hasattr(c, "state_id"))
         self.assertTrue(hasattr(c, "name"))
 
     def test_attr_types(self):
         """Test if attributes are of correct type"""
-        c = City()
+        c = self.value()
         self.assertTrue(type(c.state_id), str)
         self.assertTrue(type(c.name), str)
