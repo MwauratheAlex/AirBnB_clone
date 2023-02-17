@@ -9,7 +9,7 @@ class TestCity(TestBaseModel):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.name = "City"
-        self.value = "City"
+        self.value = City
 
     def test_has_attributes(self):
         """Test if all attributes are present"""
