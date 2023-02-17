@@ -4,12 +4,20 @@ import unittest
 import models
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
+import os
 from os import path
 from models import storage
 
 
 class TestFileStorage(unittest.TestCase):
     """ Contains tests for the class FileStorage """
+    def tearDown(self):
+        """ Remove storage file at end of tests """
+        try:
+            os.remove('file.json')
+        except:
+            pass
+
     def test_module_doc(self):
         """ Tests if module is documented """
         self.assertTrue(len(models.engine.file_storage.__doc__) > 1)
@@ -57,3 +65,10 @@ class TestFileStorage(unittest.TestCase):
         for obj in storage.all().values():
             loaded = obj
         self.assertEqual(new.to_dict()['id'], loaded.to_dict()['id'])
+
+    def test_reload_empty(self):
+        """ Load from an empty file """
+        with open('file.json', 'w') as f:
+            pass
+        with self.assertRaises(ValueError):
+            storage.reload()
