@@ -44,15 +44,21 @@ class TestFileStorage(unittest.TestCase):
         fs.new(bm)
         fs.save()
         self.assertTrue(path.exists("file.json"))
-        self.assertIn("BaseModel.{}".format(bm.id), fs.all())
         with open("file.json", "r") as f:
             json = f.read()
             self.assertIn("BaseModel.{}".format(bm.id), json)
 
-    def test_reload(self):
-        """ Tests the function reload """
-        fs = FileStorage()
+    def test_reload_method(self):
+        """Tests the function reload()"""
         bm = BaseModel()
+
         models.storage.save()
-        fs.reload()
-        self.assertIn("BaseModel." + bm.id, fs.all())
+        models.storage.reload()
+        objects = FileStorage._FileStorage__objects
+
+        self.assertIn("BaseModel." + bm.id, objects)
+
+        # What happens when an arg is passed? TypeError is raised
+        with self.assertRaises(TypeError):
+            models.storage.reload(None)
+
