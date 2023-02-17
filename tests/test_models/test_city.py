@@ -22,4 +22,3 @@ class TestCity(TestBaseModel):
         c = City()
         self.assertTrue(type(c.state_id), str)
         self.assertTrue(type(c.name), str)
-
