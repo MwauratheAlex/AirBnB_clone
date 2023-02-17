@@ -44,6 +44,7 @@ class TestFileStorage(unittest.TestCase):
         fs.new(bm)
         fs.save()
         self.assertTrue(path.exists("file.json"))
+        self.assertIn("BaseModel.{}".format(bm.id), fs.all())
 
     def test_reload(self):
         """ Tests the function reload """
