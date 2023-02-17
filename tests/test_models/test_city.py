@@ -17,8 +17,12 @@ class TestCity(TestBaseModel):
         self.assertTrue(hasattr(c, "state_id"))
         self.assertTrue(hasattr(c, "name"))
 
-    def test_attr_types(self):
-        """Test if attributes are of correct type"""
-        c = self.value()
-        self.assertTrue(type(c.state_id), str)
-        self.assertTrue(type(c.name), str)
+    def test_state_id(self):
+        """ """
+        new = self.value()
+        self.assertEqual(type(new.state_id), str)
+
+    def test_name(self):
+        """ """
+        new = self.value()
+        self.assertEqual(type(new.name), str)
