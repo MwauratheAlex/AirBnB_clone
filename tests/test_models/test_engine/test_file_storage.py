@@ -12,7 +12,8 @@ from models import storage
 class TestFileStorage(unittest.TestCase):
     """ Contains tests for the class FileStorage """
     def tearDown(self):
-        """ Remove storage file at end of tests """
+        """ Remove storage file at end of tests 
+            Pretty weird my tests actually affect the programs tests"""
         try:
             os.remove('file.json')
         except:
