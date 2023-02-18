@@ -8,7 +8,7 @@
     align-items: center;
 }
 
-button{
+.filters button{
     font-size: 18px;
     background-color: #FF5A5F;
     color: #FFFFFF;
@@ -20,27 +20,27 @@ button{
     margin-left: auto;
 }
 
-button:hover {
+.filters button:hover {
     opacity: 90%;
 }
 
-.locations,
-.amenities {
+.filters .locations,
+.filters .amenities {
     height: 100%;
     width: 25%;
     margin-left: 30px;
 }
 
-.locations {
+.filters .locations {
     border-right: 1px solid  #DDDDDD ;
 }
 
-h3 {
+.filters h3 {
     font-weight: 600;
     margin-bottom: 0;
 }
 
-h4 {
+.filters h4 {
     font-weight: 400;
     font-size: 14px;
     margin-top: 0;

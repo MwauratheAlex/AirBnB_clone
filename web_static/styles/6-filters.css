@@ -8,7 +8,7 @@
     align-items: center;
 }
 
-button{
+.filters button{
     font-size: 18px;
     background-color: #FF5A5F;
     color: #FFFFFF;
@@ -20,61 +20,64 @@ button{
     margin-left: auto;
 }
 
-button:hover {
+.filters button:hover {
     opacity: 90%;
 }
 
-.locations,
-.amenities {
+.filters .locations,
+.filters .amenities {
     height: 100%;
     width: 25%;
 }
 
-h3, h4{
+.filters h3, .filters h4{
     padding-left: 50px;
 }
 
-.locations {
+.filters .locations {
     border-right: 1px solid  #DDDDDD ;
 }
 
-h3 {
+.filters h3 {
     font-weight: 600;
     margin-bottom: 0;
 }
 
-h4 {
+.filters h4 {
     font-weight: 400;
     font-size: 14px;
     margin-top: 0;
 }
 
-ul {
+.filters ul {
     list-style-type: none;
 }
 
-li {
+.filters li {
     padding: 5px;
 }
 
-li ul {
+.filters li ul {
     padding-left: 15px;
 }
 
-.popover {
-    background-color: #FAFAFA;;
+.filters .popover {
+    background-color: #FAFAFA;
+    opacity: 100;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
     padding: 20px 50px;
     display: none;
 }
 
-h2 {
+.filters h2 {
     font-size: 16px;
     margin: 0;
 }
 
-.locations:hover .popover,
-.amenities:hover .popover {
+.filters .locations:hover .popover,
+.filters .amenities:hover .popover {
     display: block;
+    opacity: 100;
+    z-index: 50;
 }
