@@ -59,15 +59,15 @@
 }
 
 .places .max_guests {
-    background-image: url("../styles/images/icon_group.png");
+    background-image: url("../images/icon_group.png");
 }
 
 .places .number_rooms {
-    background-image: url("../styles/images/icon_bed.png");
+    background-image: url("../images/icon_bed.png");
 }
 
 .places .number_bathrooms {
-    background-image: url("../styles/images/icon_bath.png");
+    background-image: url("../images/icon_bath.png");
 }
 
 .places .max_guests,
